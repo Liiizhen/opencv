@@ -20,21 +20,21 @@ namespace aruco {
  * matrix representation, mask, submarker IDs, and keypoints. It provides methods to draw
  * the marker and is used as the output of the fractal marker detector.
  */
-class CV_EXPORTS_W_SIMPLE FractalMarker : public std::vector<Point2f> {
+class CV_EXPORTS_W_SIMPLE FractalArucoMarker : public std::vector<Point2f> {
 public:
     /**
-     * @brief Default constructor for FractalMarker.
+     * @brief Default constructor for FractalArucoMarker.
      */
-    CV_WRAP FractalMarker();
+    CV_WRAP FractalArucoMarker();
 
     /**
-     * @brief Constructs a FractalMarker with the given parameters.
+     * @brief Constructs a FractalArucoMarker with the given parameters.
      * @param id The marker ID.
      * @param m The marker matrix (bit pattern).
      * @param corners The 3D corners of the marker.
      * @param id_submarkers The IDs of submarkers.
      */
-    CV_WRAP FractalMarker(int id, InputArray m, const std::vector<Point3f>& corners, const std::vector<int>& id_submarkers);
+    CV_WRAP FractalArucoMarker(int id, InputArray m, const std::vector<Point3f>& corners, const std::vector<int>& id_submarkers);
 
     /**
      * @brief Draws the marker on the given image.
@@ -47,8 +47,8 @@ protected:
     /**
      * @brief Internal implementation details for FractalMarker (PIMPL idiom).
      */
-    struct FractalMarkerImpl;
-    Ptr<FractalMarkerImpl> fractalMarkerImpl;
+    struct FractalArucoMarkerImpl;
+    Ptr<FractalArucoMarkerImpl> fractalMarkerImpl;
 
     friend struct FractalMarkerSet;
     friend class FractalDetector;
@@ -75,7 +75,7 @@ public:
      * @param p2d Optional output 2D points (image points).
      * @return true if detection succeeded, false otherwise.
      */
-    CV_WRAP bool detect(InputArray img, CV_OUT std::vector<FractalMarker>& markers, OutputArray p3d = noArray(), OutputArray p2d = noArray());
+    CV_WRAP bool detect(InputArray img, CV_OUT std::vector<FractalArucoMarker>& markers, OutputArray p3d = noArray(), OutputArray p2d = noArray());
 
     /**
      * @brief Sets the parameters for fractal marker detection.
